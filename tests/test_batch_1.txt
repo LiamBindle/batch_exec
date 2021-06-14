@@ -1,0 +1,5 @@
+printf "this is a" && printf "%s" $(hostname) && printf $$
+printf "test   to sees "  && printf "%s" $(hostname) && printf $$
+printf "how many lines"  && printf "%s" $(hostname) && printf $$
+printf "the program counts"  && printf "%s" $(hostname) && printf $$
+printf "foobar"  && printf "%s" $(hostname) && printf $$
