@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
     int PROC_ID, NUM_PROCS;
     int ierr;
     const char* answer = "1\n2\n3\n4\n";
-    FILE *output;
+    FILE *output, *input;
     memset(tempbuf, '\0', sizeof(tempbuf));
 
     ierr = MPI_Init(&argc, &argv);
@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
     ierr = MPI_Comm_size(MPI_COMM_WORLD, &NUM_PROCS);
 
     if (PROC_ID == 0) {
-        FILE *input = fopen("test_batch_3.txt", "r");
+        input = fopen("test_batch_3.txt", "r");
         output = fopen("test_exec_output.txt", "w+");
         root_proc_loop(NUM_PROCS, input, output);
     } else {
@@ -35,15 +35,19 @@ int main(int argc, char **argv) {
     ierr = MPI_Finalize();
 
     if (PROC_ID == 0) {
-        fseek(output, 0, SEEK_END);
-        long fsize = ftell(output);
-
+        int sum = 0;
+        int temp_int;
         rewind(output);
-        fread(tempbuf, 1, fsize, output);
-        fclose(output);
-        tempbuf[fsize] = '\0';
+        while(fscanf(output, "%d\n", &temp_int) != EOF) {
+            sum += temp_int;
+        }
+        
+        assert(sum == 4095);
 
-        assert(strcmp(tempbuf, answer) == 0);
+        fclose(output);
+        fclose(input);
+
+        remove("test_exec_output.txt");
     }
 
     return 0;

@@ -1,4 +1,12 @@
-echo 4 ; sleep 4s
-echo 3 ; sleep 3s
-echo 1 ; sleep 1s
-echo 2 ; sleep 2s
+echo 1 ; sleep 0.3s
+echo 2 ; sleep 0.1s
+echo 4 ; sleep 0.2s
+echo 8 ; sleep 0.3s
+echo 16 ; sleep 0.2s
+echo 32 ; sleep 0.3s
+echo 64 ; sleep 0.1s
+echo 128 ; sleep 0.3s
+echo 256 ; sleep 0.1s
+echo 512; sleep 0.2s
+echo 1024; sleep 0.3s
+echo 2048; sleep 0.1s
