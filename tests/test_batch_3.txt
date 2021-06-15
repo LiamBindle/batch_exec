@@ -1,0 +1,4 @@
+echo 4 ; sleep 4s
+echo 3 ; sleep 3s
+echo 1 ; sleep 1s
+echo 2 ; sleep 2s
