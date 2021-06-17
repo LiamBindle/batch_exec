@@ -7,3 +7,6 @@ target_link_libraries(utils PUBLIC MPI::MPI_CXX)
 # Main program
 add_executable(batch_exec batch_exec.c)
 target_link_libraries(batch_exec utils)
+
+install(TARGETS batch_exec 
+        RUNTIME DESTINATION bin)
